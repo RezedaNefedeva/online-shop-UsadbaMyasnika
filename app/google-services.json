@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "274355956137",
+    "project_id": "usadbamyasnika",
+    "storage_bucket": "usadbamyasnika.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274355956137:android:f1ba6b4c4e60b8f78f7cb8",
+        "android_client_info": {
+          "package_name": "com.rezeda.usadbamyasnika"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNKkvvRpST8ME2judjy-dgH7qiwDdgyxU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

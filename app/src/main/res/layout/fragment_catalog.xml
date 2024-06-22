@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CatalogFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/lines3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/header_pic" />
+
+            <TextView
+                android:id="@+id/main_page_recept"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-60dp"
+                android:fontFamily="@font/roboto_slab_bold"
+                android:gravity="center"
+                android:text="@string/catalog"
+                android:textColor="@color/red"
+                android:textSize="32dp"
+                android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/category_kolbasa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/category_card"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="40dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/pic1"
+                        android:contentDescription="@string/kolbasa"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="20dp"
+                        android:fontFamily="@font/roboto_slab_bold"
+                        android:gravity="center_horizontal"
+                        android:text="@string/kolbasa"
+                        android:textColor="@color/black"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/category_meat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/category_card"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="280dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/pic2"
+                        android:contentDescription="@string/meat"
+                        android:layout_marginTop="40dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/roboto_slab_bold"
+                        android:text="@string/meat"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:textSize="24dp"
+                        android:textStyle="bold"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginBottom="20dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/category_delicates"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/category_card"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="280dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@string/delicates"
+                        android:src="@drawable/pic3"
+                        android:layout_marginTop="40dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/roboto_slab_bold"
+                        android:text="@string/delicates"
+                        android:textColor="@color/black"
+                        android:gravity="center_horizontal"
+                        android:textSize="24dp"
+                        android:textStyle="bold"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginBottom="20dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/category_zamorozka"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/category_card"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="240dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/pic4"
+                        android:contentDescription=""
+                        android:layout_marginTop="40dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/roboto_slab_bold"
+                        android:text="@string/pelmeni"
+                        android:textColor="@color/black"
+                        android:textSize="24dp"
+                        android:textStyle="bold"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginBottom="20dp"
+                        android:gravity="center_horizontal"/>
+                </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

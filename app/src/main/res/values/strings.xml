@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Усадьба мясника</string>
+    <string name="house">Главная</string>
+    <string name="catalog">Каталог</string>
+    <string name="recept">Рецепты</string>
+    <string name="cart">Корзина</string>
+    <string name="user">Профиль</string>
+    <string name="about">О нас</string>
+    <string name="about_text">Усадьба мясника - это не только магазин колбасных изделий, но и цех по производству колбас, мясных де-ликатесов и заморожернных полу-фабрикатов. Весь представленный в магазине ассортимент производится в собственном цеху, без добавления химикатов, ГМО, сои и подобных удешевляющих ингредиентов.
+Всё произведенное нами сделано только из натурального сырья</string>
+    <string name="kolbasa">Колбасы \nи колбасные изделия</string>
+    <string name="meat">Мясо, фарш, \nшашлык</string>
+    <string name="delicates">Мясные \nделикатесы</string>
+    <string name="pelmeni">Замороженные \nполуфабрикаты</string>
+    <string name="btn_recept">Посмотреть</string>
+    <string name="contact">Контакты</string>
+    <string name="phone_number">+7(964)962-46-48</string>
+    <string name="whatsapp_number">+7(964)962-46-48</string>
+    <string name="telegramm_nic">+7(964)962-46-48</string>
+    <string name="adress">г. Сибай ул. Крупской д.3а</string>
+    <string name="btn_all_recepts">Смотреть все рецепты</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="auth">Авторизация</string>
+    <string name="reg">Регистрация</string>
+    <string name="enter_phone">Введите номер телефона</string>
+    <string name="enter_pass">Введите пароль</string>
+    <string name="enter_email">Введите адрес электронной почты</string>
+    <string name="enter_name">Ваше имя</string>
+    <string name="enter">Войти</string>
+    <string name="registration">Зарегистрироваться</string>
+</resources>

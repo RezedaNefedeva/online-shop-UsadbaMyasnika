@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_house"
+        android:title="@string/house"
+        android:icon="@drawable/house"
+        />
+
+    <item
+        android:id="@+id/menu_catalog"
+        android:title="@string/catalog"
+        android:icon="@drawable/catalog"
+        />
+
+    <item
+        android:id="@+id/menu_cart"
+        android:title="@string/cart"
+        android:icon="@drawable/cart"
+        />
+
+    <item
+        android:id="@+id/menu_recept"
+        android:title="@string/recept"
+        android:icon="@drawable/recept"
+        />
+
+    <item
+        android:id="@+id/menu_profile"
+        android:title="@string/user"
+        android:icon="@drawable/user"
+        />
+</menu>

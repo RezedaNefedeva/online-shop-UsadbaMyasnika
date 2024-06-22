@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/catalogFragment"
+        android:name="com.rezeda.usadbamyasnika.CatalogFragment"
+        android:label="fragment_catalog"
+        tools:layout="@layout/fragment_catalog" >
+        <action
+            android:id="@+id/action_catalogFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/receptFragment"
+        android:name="com.rezeda.usadbamyasnika.ReceptFragment"
+        android:label="fragment_recept"
+        tools:layout="@layout/fragment_recept" />
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.rezeda.usadbamyasnika.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_catalogFragment"
+            app:destination="@id/catalogFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_receptFragment"
+            app:destination="@id/receptFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.rezeda.usadbamyasnika.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.rezeda.usadbamyasnika.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_regFragment"
+            app:destination="@id/regFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_authProfileFragment"
+            app:destination="@id/authProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.rezeda.usadbamyasnika.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_categoryFragment_to_catalogFragment"
+            app:destination="@id/catalogFragment" />
+        <action
+            android:id="@+id/action_categoryFragment_to_productPageFragment"
+            app:destination="@id/productPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productPageFragment"
+        android:name="com.rezeda.usadbamyasnika.ProductPageFragment"
+        android:label="fragment_product_page"
+        tools:layout="@layout/fragment_product_page" />
+    <fragment
+        android:id="@+id/regFragment"
+        android:name="com.rezeda.usadbamyasnika.RegFragment"
+        android:label="fragment_reg"
+        tools:layout="@layout/fragment_reg" >
+        <action
+            android:id="@+id/action_regFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_regFragment_to_authProfileFragment"
+            app:destination="@id/authProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authProfileFragment"
+        android:name="com.rezeda.usadbamyasnika.AuthProfileFragment"
+        android:label="fragment_auth_profile"
+        tools:layout="@layout/fragment_auth_profile" />
+</navigation>
