@@ -3,24 +3,32 @@ package com.rezeda.usadbamyasnika.helpers
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.rezeda.usadbamyasnika.R
 import com.rezeda.usadbamyasnika.models.Kolbasa
-import com.rezeda.usadbamyasnika.models.Meat
 
-class MeatAdapter : RecyclerView.Adapter<MeatAdapter.MyViewHolder>() {
+class KolbasaAdapter : RecyclerView.Adapter<KolbasaAdapter.MyViewHolder>() {
 
-    private val meatList = ArrayList<Meat>()
+    private val kolbasaList = ArrayList<Kolbasa>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MeatAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KolbasaAdapter.MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.product_list_item_design, parent, false)
         return MyViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: MeatAdapter.MyViewHolder, position: Int) {
-        val currentitem = meatList[position]
+    override fun onBindViewHolder(holder: KolbasaAdapter.MyViewHolder, position: Int) {
+        val currentitem = kolbasaList[position]
+
+        val id = when(currentitem.img){
+            "kolbasa_dom" -> R.drawable.kolbasa_dom
+            "kolbasa_konina" -> R.drawable.kolbasa_konina
+            "kolbasa_varen" -> R.drawable.kolbasa_varen
+            else -> R.drawable.kolbasa_zapech
+        }
+        holder.img.setImageResource(id)
 
         holder.title.text = currentitem.title
         holder.weight.text = currentitem.weight
@@ -28,12 +36,12 @@ class MeatAdapter : RecyclerView.Adapter<MeatAdapter.MyViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return meatList.size
+        return kolbasaList.size
     }
 
-    fun updateMeatList (meatList: List<Meat>){
-        this.meatList.clear()
-        this.meatList.addAll(meatList)
+    fun updateKolbasaList (kolbasaList: List<Kolbasa>){
+        this.kolbasaList.clear()
+        this.kolbasaList.addAll(kolbasaList)
         notifyDataSetChanged()
     }
 

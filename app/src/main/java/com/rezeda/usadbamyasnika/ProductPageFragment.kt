@@ -42,7 +42,7 @@ class ProductPageFragment : Fragment() {
                             "kolbasa_dom" -> R.drawable.kolbasa_dom
                             "kolbasa_konina" -> R.drawable.kolbasa_konina
                             "kolbasa_varen" -> R.drawable.kolbasa_varen
-                            else -> R.drawable.kolbasa_varen
+                            else -> R.drawable.kolbasa_zapech
                         }
                         product_page_img.setImageResource(id)
 

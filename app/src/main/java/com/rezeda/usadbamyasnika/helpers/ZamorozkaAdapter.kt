@@ -1,48 +1,48 @@
 package com.rezeda.usadbamyasnika.helpers
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
-import com.rezeda.usadbamyasnika.CartClickLictener
-import com.rezeda.usadbamyasnika.CategoryFragment
 import com.rezeda.usadbamyasnika.R
 import com.rezeda.usadbamyasnika.models.Kolbasa
 import com.rezeda.usadbamyasnika.models.Zamorozka
 
-class ZamorozkaAdapter (private val products:List<Zamorozka?>, private val mContext: Context) :
-    RecyclerView.Adapter<ZamorozkaAdapter.MyViewHolder>() {
+class ZamorozkaAdapter : RecyclerView.Adapter<ZamorozkaAdapter.MyViewHolder>() {
 
+    private val zamorozkaList = ArrayList<Zamorozka>()
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val product_page_img = itemView.findViewById<ImageView>(R.id.product_page_img)
-        val product_page_title = itemView.findViewById<TextView>(R.id.product_page_title)
-        val product_page_weight = itemView.findViewById<TextView>(R.id.product_page_weight)
-        val product_page_price = itemView.findViewById<TextView>(R.id.product_page_price)
-
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ZamorozkaAdapter.MyViewHolder {
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.product_list_item_design, parent, false)
+        return MyViewHolder(itemView)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.product_list_item_design, parent, false)
-        return MyViewHolder(view)
+    override fun onBindViewHolder(holder: ZamorozkaAdapter.MyViewHolder, position: Int) {
+        val currentitem = zamorozkaList[position]
+
+        holder.title.text = currentitem.title
+        holder.weight.text = currentitem.weight
+        holder.price.text = currentitem.price
     }
 
     override fun getItemCount(): Int {
-        return products.count()
+        return zamorozkaList.size
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.product_page_title.text = products[position]?.title
-        holder.product_page_weight.text = products[position]?.weight
-        holder.product_page_price.text = products[position]?.price
-        holder.itemView.setOnClickListener {
-            Toast.makeText(mContext,"Проверьте интернет соединение", Toast.LENGTH_LONG).show()
-        }
+    fun updateZamorozkaList (zamorozkaList: List<Zamorozka>){
+        this.zamorozkaList.clear()
+        this.zamorozkaList.addAll(zamorozkaList)
+        notifyDataSetChanged()
+    }
+
+    class MyViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
+        val img : ImageView = itemView.findViewById(R.id.product_img)
+        val title: TextView = itemView.findViewById(R.id.product_title)
+        val weight: TextView = itemView.findViewById(R.id.product_weight)
+        val price: TextView = itemView.findViewById(R.id.product_price)
+//        val product_addToCart: Button = itemView.findViewById(R.id.product_addToCart)
     }
 
 }

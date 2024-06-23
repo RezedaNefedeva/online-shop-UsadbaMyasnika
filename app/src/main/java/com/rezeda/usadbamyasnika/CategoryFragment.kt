@@ -8,23 +8,37 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.rezeda.usadbamyasnika.helpers.DelicatesAdapter
-import com.rezeda.usadbamyasnika.helpers.KolbasaAdapter2
+import com.rezeda.usadbamyasnika.helpers.KolbasaAdapter
 import com.rezeda.usadbamyasnika.helpers.MeatAdapter
 import com.rezeda.usadbamyasnika.helpers.ZamorozkaAdapter
-import com.rezeda.usadbamyasnika.models.Delicates
+import com.rezeda.usadbamyasnika.models.DelicatesViewModel
 import com.rezeda.usadbamyasnika.models.Kolbasa
+import com.rezeda.usadbamyasnika.models.KolbasaViewModel
 import com.rezeda.usadbamyasnika.models.Meat
-import com.rezeda.usadbamyasnika.models.Zamorozka
+import com.rezeda.usadbamyasnika.models.MeatViewModel
+import com.rezeda.usadbamyasnika.models.ZamorozkaViewModel
 
 class CategoryFragment : Fragment(), CartClickLictener {
+
+    private lateinit var kolbasaViewModel : KolbasaViewModel
+    private lateinit var delicatesViewModel : DelicatesViewModel
+    private lateinit var meatViewModel : MeatViewModel
+    private lateinit var zamorozkaViewModel : ZamorozkaViewModel
+    private lateinit var kolbasaRecyclerView: RecyclerView
+    private lateinit var delicatesRecyclerView: RecyclerView
+    private lateinit var meatRecyclerView: RecyclerView
+    private lateinit var zamorozkaRecyclerView: RecyclerView
+    lateinit var kolbasaAdapter: KolbasaAdapter
+    lateinit var delicatesAdapter: DelicatesAdapter
+    lateinit var meatAdapter: MeatAdapter
+    lateinit var zamorozkaAdapter: ZamorozkaAdapter
 
     companion object{
         var category_name: String = "null"
@@ -40,97 +54,72 @@ class CategoryFragment : Fragment(), CartClickLictener {
         val view = inflater.inflate(R.layout.fragment_category, container, false)
 
         val back = view.findViewById<ImageView>(R.id.back_catalog)
+
         back.setOnClickListener { findNavController().navigate(R.id.action_categoryFragment_to_catalogFragment)
         }
-        val context = context as MainActivity2
+        return view
+    }
 
-        var listView = view.findViewById<RecyclerView>(R.id.product_list)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         var text = view.findViewById<TextView>(R.id.category_name)
 
-        val database = FirebaseDatabase.getInstance("https://usadbamyasnika-default-rtdb.europe-west1.firebasedatabase.app/")
-        when(category_name){
-            "kolbasa" ->{text.text = "Колбаса \nи колбасные изделия"
+        when(category_name) {
+            "kolbasa" ->{
+                text.text = "Колбасы \nи колбасные изделия"
+                kolbasaRecyclerView = view.findViewById(R.id.product_list)
+                kolbasaRecyclerView.layoutManager = LinearLayoutManager(context)
+                kolbasaRecyclerView.setHasFixedSize(true)
+                kolbasaAdapter = KolbasaAdapter()
+                kolbasaRecyclerView.adapter = kolbasaAdapter
 
-                val table = database.getReference("Kolbasa")
+                kolbasaViewModel = ViewModelProvider(this).get(KolbasaViewModel::class.java)
+                kolbasaViewModel.allKolbasa.observe(
+                    viewLifecycleOwner,
+                    Observer { kolbasaAdapter.updateKolbasaList(it) })
+            }
+            "delicates" ->{
+                text.text = "Мясные деликатесы"
+                delicatesRecyclerView = view.findViewById(R.id.product_list)
+                delicatesRecyclerView.layoutManager = LinearLayoutManager(context)
+                delicatesRecyclerView.setHasFixedSize(true)
+                delicatesAdapter = DelicatesAdapter()
+                delicatesRecyclerView.adapter = delicatesAdapter
 
-                table.addValueEventListener(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        val allProduct = ArrayList<Kolbasa?>()
-                        for(obj in snapshot.children){
-                            val product = obj.getValue(Kolbasa::class.java)
-                            if(product!=null) {
-                                allProduct.add(product)
-                            }
-                            val arrayAdapter = KolbasaAdapter2(allProduct, context)
-                            listView.adapter = arrayAdapter
-                        }
-                    }
-                    override fun onCancelled(error: DatabaseError) {
-                        Toast.makeText(context, "Проверьте интернет соединение", Toast.LENGTH_LONG).show()
-                    }
-                })}
-            "meat" ->{text.text = "Мясо, фарш, шашлык"
+                delicatesViewModel = ViewModelProvider(this).get(DelicatesViewModel::class.java)
+                delicatesViewModel.allDelicates.observe(
+                    viewLifecycleOwner,
+                    Observer { delicatesAdapter.updateDelicatesList(it) })
+            }
+            "meat" ->{
+                text.text = "Мясо \nи мясные полуфабрикаты"
+                meatRecyclerView = view.findViewById(R.id.product_list)
+                meatRecyclerView.layoutManager = LinearLayoutManager(context)
+                meatRecyclerView.setHasFixedSize(true)
+                meatAdapter = MeatAdapter()
+                meatRecyclerView.adapter = meatAdapter
 
-                val table = database.getReference("Meat")
+                meatViewModel = ViewModelProvider(this).get(MeatViewModel::class.java)
+                meatViewModel.allMeat.observe(
+                    viewLifecycleOwner,
+                    Observer { meatAdapter.updateMeatList(it) })
+            }
+            "zamorozka" ->{
+                text.text = "Замороженные полуфабрикаты"
+                zamorozkaRecyclerView = view.findViewById(R.id.product_list)
+                zamorozkaRecyclerView.layoutManager = LinearLayoutManager(context)
+                zamorozkaRecyclerView.setHasFixedSize(true)
+                zamorozkaAdapter = ZamorozkaAdapter()
+                zamorozkaRecyclerView.adapter = zamorozkaAdapter
 
-                table.addValueEventListener(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        val allProduct = ArrayList<Meat?>()
-                        for(obj in snapshot.children){
-                            val product = obj.getValue(Meat::class.java)
-                            if(product!=null) {
-                                allProduct.add(product)
-                            }
-                            val arrayAdapter = MeatAdapter(allProduct, context)
-                            listView.adapter = arrayAdapter
-                        }
-                    }
-                    override fun onCancelled(error: DatabaseError) {
-                        Toast.makeText(context, "Проверьте интернет соединение", Toast.LENGTH_LONG).show()
-                    }
-                })}
-            "delicates" ->{text.text = "Мясные \nделикатесы"
+                zamorozkaViewModel = ViewModelProvider(this).get(ZamorozkaViewModel::class.java)
+                zamorozkaViewModel.allZamorozka.observe(
+                    viewLifecycleOwner,
+                    Observer { zamorozkaAdapter.updateZamorozkaList(it) })
+            }
 
-                val table = database.getReference("Delicates")
-
-                table.addValueEventListener(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        val allProduct = ArrayList<Delicates?>()
-                        for(obj in snapshot.children){
-                            val product = obj.getValue(Delicates::class.java)
-                            if(product!=null) {
-                                allProduct.add(product)
-                            }
-                            val arrayAdapter = DelicatesAdapter(allProduct, context)
-                            listView.adapter = arrayAdapter
-                        }
-                    }
-                    override fun onCancelled(error: DatabaseError) {
-                        Toast.makeText(context, "Проверьте интернет соединение", Toast.LENGTH_LONG).show()
-                    }
-                })}
-            "zamorozka" ->{text.text = "Замороженные \nполуфабрикаты"
-
-                val table = database.getReference("Zamorozka")
-
-                table.addValueEventListener(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        val allProduct = ArrayList<Zamorozka?>()
-                        for(obj in snapshot.children){
-                            val product = obj.getValue(Zamorozka::class.java)
-                            if(product!=null) {
-                                allProduct.add(product)
-                            }
-                            val arrayAdapter = ZamorozkaAdapter(allProduct, context)
-                            listView.adapter = arrayAdapter
-                        }
-                    }
-                    override fun onCancelled(error: DatabaseError) {
-                        Toast.makeText(context, "Проверьте интернет соединение", Toast.LENGTH_LONG).show()
-                    }
-                })}
         }
-        return view
     }
 
     override fun onCartClickListener(view: View, product: Kolbasa) {
